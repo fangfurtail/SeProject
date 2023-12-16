@@ -6,6 +6,7 @@ public class Deck {
 	private final String[] Number = {"1", "2", "3", "4", "5", "6", "7", "8", "9","10"};
 	private final String[] Signs = { "+" , "-"};
 	
+	private Card temporaryCard;
 	private int deckCreaterIndex= 0; 
 	private Card[] deck ;
 	Scanner scan = new Scanner(System.in);
@@ -26,14 +27,24 @@ public class Deck {
 			}
 		}
 	}
+	
+	
+	public void shuffle(){ 
+			for( int i = 0 ; i < 40 ; i++){				// looping through all cards in the deck.
+				int randIndex = rd.nextInt(40);			// generating a random number to replace 
+				temporaryCard = deck[randIndex];		// generated temp card to swap values
+				deck[randIndex] = deck[i];
+				deck[i] = temporaryCard;
+			}
+	}
 	public static void main(String[] args){  // checking if it works, yes it does work. 
 		Deck deckInstance = new Deck();
+		deckInstance.shuffle();
 		for (int t = 0; t < deckInstance.deck.length; t++) {
         System.out.println(deckInstance.deck[t].wholeCardToString());
 		}
 	}
-	
-	public void shuffle(){   // 
+	}
 	/*
 	String tempValue =" " ;
 String [] arr = {"a","b","c","d","e"};
