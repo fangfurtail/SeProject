@@ -53,14 +53,14 @@ public class Deck {
 			}
 	}
 	
-	public void giveCard ( ){                          // giving first 5 bottom cards to user 
+	public void giveCard ( ){                          // giving first 5 bottom cards to user , then 3 cards , then last 2 tricky cards 
 		for ( int i = 0 ; i < 5; i++){                 // 	I M not deleting those cards from  main deck !!!!! be careful
 			UserDeckNotMain[i] = Deck[39-i];
 			//Deck[39-i].Colour =null;			     	// bu calısmıyor 
 		}
 		for (int t = 0 ; t<5 ;t++){
 			CpuDeckNotMain[t] = Deck[t];
-			Deck[t] = null;
+			//Deck[t] = null;
 		}
 		// from now on I'am prepearing the pool for the extra 3 cards with  + - signs and 1 to 6 
 		for(int t = 0 ; t < Colour.length; t++){
@@ -80,15 +80,49 @@ public class Deck {
 		
 		int randomValueforPicking; 		// we need to select 3 random cards for eachside
 		int randomValueforPicking2;
-		for( int i = 0 ; i < 3 ; i++){
+		int randomValueforPicking3;
+		
+		for( int i = 0 ; i < 3 ; i++){			// and I ADDED THEM to each players deck 
 			randomValueforPicking = rd.nextInt(TopUpCards.length);
 			randomValueforPicking2 = rd.nextInt(TopUpCards.length);
 			CpuDeckNotMain[5+i] = TopUpCards[randomValueforPicking];
 			UserDeckNotMain[5+i]= TopUpCards[randomValueforPicking2];
 		}
 		
+		for ( int i = 0 ; i < 2 ; i++){		// I LL SELECT THE LAST 2 TRICKY CARDS
+			randomValueforPicking= rd.nextInt(10)+1;		// this takes values 1 to 10 both inclusive
+			randomValueforPicking2 = rd.nextInt(10)+1;
+			randomValueforPicking3 = rd.nextInt(TopUpCards.length);
+			
+			if ( randomValueforPicking > 2 ) {      			// this is %80 
+				CpuDeckNotMain[8+i] = TopUpCards[randomValueforPicking3];
+			}else {												// this is %20
+				if ( randomValueforPicking % 2 == 0 ){          
+					CpuDeckNotMain[8 + i] = new Card("flip", "flip", "flip");
+					
+				}else{          
+					 CpuDeckNotMain[8 + i] = new Card("double", "double", "double");
+				}
+				
+			}
+			if ( randomValueforPicking2 > 2 ) {      			// this is %80 
+				UserDeckNotMain[8+i] = TopUpCards[randomValueforPicking3];
+			}else {												// this is %20
+				if ( randomValueforPicking2 % 2 == 0 ){          
+					UserDeckNotMain[8 + i] = new Card("flip", "flip", "flip");
+					
+				}else{          
+					 UserDeckNotMain[8 + i] = new Card("double", "double", "double");
+				}
+				
+			}
+			
+		}	
+					
+		
+		
 	
-	 
+		
 		
 	}
 		
@@ -155,13 +189,13 @@ public void printTopUpCards() {
         deckInstance.shuffle();
 
         // Print the entire deck
-       deckInstance.printDeck();
+       //deckInstance.printDeck();
 
         // Print UserDeckNotMain
         deckInstance.giveCard();
         deckInstance.printUserDeckNotMain();
 		deckInstance.printCpuDeckNotMain();
-		deckInstance.printTopUpCards();
+		//deckInstance.printTopUpCards();
     }
 }
 	

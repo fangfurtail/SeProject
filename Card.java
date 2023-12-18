@@ -1,8 +1,8 @@
 public class Card {
 
 	public String Colour;
-	private String Number;
-	private String Signs;
+	public String Number;
+	public String Signs;
 	
 	
 	public Card(String Colour, String Number, String Signs ) {
