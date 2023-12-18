@@ -1,6 +1,6 @@
 public class Card {
 
-	private String Colour;
+	public String Colour;
 	private String Number;
 	private String Signs;
 	

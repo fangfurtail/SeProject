@@ -8,6 +8,9 @@ public class Deck {
 	
 	private Card temporaryCard;			  // will be used to shuffle the cards
 	private int deckCreaterIndex= 0;      // will be used to create a desk
+	private int deckCreaterIndex2= 0; 	  
+	private int deckCreaterIndex3= 0; 
+	private Card [] TopUpCards	;		  // will be used to add extra 3 cards to decks
 	private Card[] Deck ;		// since now I have a deck , Cards can store 3 values
 	private Card[] UserDeckNotMain ; // I need to get 10 cards for the user to select 4 of them.
 	private Card[] UserDeckMain  ;	   // Selected 4 
@@ -26,6 +29,7 @@ public class Deck {
 	
 	public Deck() { //// With this I succesfully created a game deck , each has a color, number value and a sign
 		Deck = new Card [40];
+		TopUpCards = new Card [48];    // I ll use them to add random cards to each players deck,
 		UserDeckMain = new Card [4];
 		UserDeckNotMain = new Card[10];
 		CpuDeckMain = new Card[4];
@@ -52,13 +56,62 @@ public class Deck {
 	public void giveCard ( ){                          // giving first 5 bottom cards to user 
 		for ( int i = 0 ; i < 5; i++){                 // 	I M not deleting those cards from  main deck !!!!! be careful
 			UserDeckNotMain[i] = Deck[39-i];
-			Deck[39-i] = null; 				     	// bu calısmıyor 
+			//Deck[39-i].Colour =null;			     	// bu calısmıyor 
 		}
 		for (int t = 0 ; t<5 ;t++){
 			CpuDeckNotMain[t] = Deck[t];
 			Deck[t] = null;
 		}
+		// from now on I'am prepearing the pool for the extra 3 cards with  + - signs and 1 to 6 
+		for(int t = 0 ; t < Colour.length; t++){
+			for (int n = 0 ; n < 6 ; n++){
+				TopUpCards[deckCreaterIndex2]=new Card(Colour[t] , Number [n], "+");  // positive 1 to 6 numbers with colours 
+				deckCreaterIndex2++;
+		
+			}
+		}
+		for(int t = 0 ; t < Colour.length; t++){
+			for (int n = 0 ; n < 6 ; n++){
+				TopUpCards[deckCreaterIndex3+24]=new Card(Colour[t] , Number [n], "-");  // negative 1 to 6 numbers with colours 
+				deckCreaterIndex3++;
+			}
+		}
+		
+		
+		int randomValueforPicking; 		// we need to select 3 random cards for eachside
+		int randomValueforPicking2;
+		for( int i = 0 ; i < 3 ; i++){
+			randomValueforPicking = rd.nextInt(TopUpCards.length);
+			randomValueforPicking2 = rd.nextInt(TopUpCards.length);
+			CpuDeckNotMain[5+i] = TopUpCards[randomValueforPicking];
+			UserDeckNotMain[5+i]= TopUpCards[randomValueforPicking2];
+		}
+		
+	
+	 
+		
 	}
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
 	
 	
 	
@@ -88,6 +141,14 @@ public void printUserDeckNotMain() {
         }
     }
 }
+public void printTopUpCards() {
+    System.out.println("TopUpCards contents:");
+    for (Card card : TopUpCards) {
+        if (card != null) {
+            System.out.println(card.wholeCardToString());
+        }
+    }
+} 
 
     public static void main(String[] args) {
         Deck deckInstance = new Deck();
@@ -100,7 +161,7 @@ public void printUserDeckNotMain() {
         deckInstance.giveCard();
         deckInstance.printUserDeckNotMain();
 		deckInstance.printCpuDeckNotMain();
-		
+		deckInstance.printTopUpCards();
     }
 }
 	
