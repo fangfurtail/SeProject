@@ -13,6 +13,7 @@ public class Deck {
 	private Card[] UserDeckMain  ;	   // Selected 4 
 	private Card[] CpuDeckNotMain ;  
 	private Card[] CpuDeckMain  ;  
+	private Card[] EmptyDeck;
 	
 	
 	// I already assigned !!!!  boardCardsForUser and boardCardsForCPU in Board class.
@@ -27,6 +28,8 @@ public class Deck {
 		Deck = new Card [40];
 		UserDeckMain = new Card [4];
 		UserDeckNotMain = new Card[10];
+		CpuDeckMain = new Card[4];
+		CpuDeckNotMain = new Card[10];
 		for(int t = 0 ; t < Colour.length; t++){
 			for (int n = 0 ; n < Number.length ; n++){
 				Deck[deckCreaterIndex]=new Card(Colour[t] , Number [n], "+");  // all signs must be positive in the main deck.
@@ -47,31 +50,61 @@ public class Deck {
 	}
 	
 	public void giveCard ( ){                          // giving first 5 bottom cards to user 
-		for ( int i = 0 ; i < 5 ; i++){
+		for ( int i = 0 ; i < 5; i++){                 // 	I M not deleting those cards from  main deck !!!!! be careful
 			UserDeckNotMain[i] = Deck[39-i];
+			Deck[39-i] = null; 				     	// bu calısmıyor 
+		}
+		for (int t = 0 ; t<5 ;t++){
+			CpuDeckNotMain[t] = Deck[t];
+			Deck[t] = null;
 		}
 	}
 	
 	
 	
-
-	
-	 public void printUserDeckNotMain() {
-        System.out.println("UserDeckNotMain in icindekiler:");
-        for (Card card : UserDeckNotMain) {
+    public void printDeck() {
+    System.out.println("Deck contents:");
+    for (Card card : Deck) {
+        if (card != null) {
             System.out.println(card.wholeCardToString());
         }
     }
-	 public static void main(String[] args) {
+}
+
+	public void printCpuDeckNotMain() {               // Assigned player cards but couldnt assess the values to null in main deck !
+    System.out.println("CpuDeckNotMain contents:");
+    for (Card card : CpuDeckNotMain) {
+        if (card != null) {
+            System.out.println(card.wholeCardToString());
+        }
+    }
+}
+
+public void printUserDeckNotMain() {
+    System.out.println("UserDeckNotMain contents:");
+    for (Card card : UserDeckNotMain) {
+        if (card != null) {
+            System.out.println(card.wholeCardToString());
+        }
+    }
+}
+
+    public static void main(String[] args) {
         Deck deckInstance = new Deck();
         deckInstance.shuffle();
-        deckInstance.giveCard();
+
+        // Print the entire deck
+       deckInstance.printDeck();
 
         // Print UserDeckNotMain
+        deckInstance.giveCard();
         deckInstance.printUserDeckNotMain();
-	 }
+		deckInstance.printCpuDeckNotMain();
+		
+    }
 }
 	
+
 	
 	
 	
