@@ -56,11 +56,11 @@ public class Deck {
 	public void giveCard ( ){                          // giving first 5 bottom cards to user , then 3 cards , then last 2 tricky cards 
 		for ( int i = 0 ; i < 5; i++){                 // 	I M not deleting those cards from  main deck !!!!! be careful
 			UserDeckNotMain[i] = Deck[39-i];
-			//Deck[39-i].Colour =null;			     	// bu calısmıyor 
+			Deck[39-i] = new Card (null,null,null);		     	// bu calısmıyor  , artık calısıyo
 		}
 		for (int t = 0 ; t<5 ;t++){
 			CpuDeckNotMain[t] = Deck[t];
-			//Deck[t] = null;
+			Deck[t] = new Card (null,null,null);
 		}
 		// from now on I'am prepearing the pool for the extra 3 cards with  + - signs and 1 to 6 
 		for(int t = 0 ; t < Colour.length; t++){
@@ -81,8 +81,10 @@ public class Deck {
 		int randomValueforPicking; 		// we need to select 3 random cards for eachside
 		int randomValueforPicking2;
 		int randomValueforPicking3;
+		int randomValueforPick;
 		
 		for( int i = 0 ; i < 3 ; i++){			// and I ADDED THEM to each players deck 
+			
 			randomValueforPicking = rd.nextInt(TopUpCards.length);
 			randomValueforPicking2 = rd.nextInt(TopUpCards.length);
 			CpuDeckNotMain[5+i] = TopUpCards[randomValueforPicking];
@@ -115,12 +117,32 @@ public class Deck {
 					 UserDeckNotMain[8 + i] = new Card("double", "double", "double");
 				}
 				
-			}
+			}		
 			
-		}	
-					
-		
-		
+			
+			
+		}	//  ı am trying to get 4 random cards for each user and cpu ; for that I LL FIRST shuffle the decks which contains 10 cards ; then I LL assign values to user and cpu MAIN DECK 
+		    // I am sure that this game is not unfair
+		for( int i = 0 ; i < 10 ; i++){				// looping through all cards in the deck.
+				int randIndex = rd.nextInt(10);			// generating a random number to replace 
+				temporaryCard = UserDeckNotMain[randIndex];		// generated temp card to swap values
+				UserDeckNotMain[randIndex] = UserDeckNotMain[i];
+				UserDeckNotMain[i] = temporaryCard;
+			}
+		for( int i = 0 ; i < 10 ; i++){				// looping through all cards in the deck
+				int randIndex = rd.nextInt(10);			// generating a random number to replace 
+				temporaryCard = CpuDeckNotMain[randIndex];		// generated temp card to swap values
+				CpuDeckNotMain[randIndex] = CpuDeckNotMain[i];
+				CpuDeckNotMain[i] = temporaryCard;
+			}
+		randomValueforPicking = rd.nextInt(4);
+		randomValueforPicking2 = rd.nextInt(4);
+		for(int i = 0 ; i < 4 ; i++){
+			CpuDeckMain[i] = CpuDeckNotMain[randomValueforPicking];
+			UserDeckMain[i]= UserDeckNotMain[randomValueforPicking2];
+			randomValueforPicking++;
+			randomValueforPicking2++;
+		}
 	
 		
 		
@@ -175,6 +197,13 @@ public void printUserDeckNotMain() {
         }
     }
 }
+public void printCpuDeckMain() {
+    System.out.println("CpuDeckMain contents:");
+    for (Card card : CpuDeckMain) {
+        System.out.println(card.wholeCardToString());
+    }
+}
+
 public void printTopUpCards() {
     System.out.println("TopUpCards contents:");
     for (Card card : TopUpCards) {
@@ -183,19 +212,30 @@ public void printTopUpCards() {
         }
     }
 } 
+public void printUserDeckMain() {
+        System.out.println("UserDeckMain contents:");
+        for (Card card : UserDeckMain) {
+            System.out.println(card.wholeCardToString());
+        }
+    }
+
 
     public static void main(String[] args) {
         Deck deckInstance = new Deck();
         deckInstance.shuffle();
 
         // Print the entire deck
-       //deckInstance.printDeck();
+        
 
         // Print UserDeckNotMain
         deckInstance.giveCard();
+		deckInstance.printDeck();
         deckInstance.printUserDeckNotMain();
 		deckInstance.printCpuDeckNotMain();
 		//deckInstance.printTopUpCards();
+		deckInstance.printCpuDeckMain();
+		deckInstance.printUserDeckMain();
+		
     }
 }
 	
