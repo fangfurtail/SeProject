@@ -14,9 +14,7 @@ public class Board{
 	public String game(){
 		
 		
-		System.out.println("                     CPU") ;
-		
-		
+		System.out.println("                     CPU");
 		int cpuHasThatMuchCardOnHand =(int)BoardInstance.getCpuDeckMain().length;		// It prints out the Cards which are hidden
 		for (int i = 0 ; i < cpuHasThatMuchCardOnHand ; i++){                          
 			System.out.print("       X  ");
@@ -24,7 +22,6 @@ public class Board{
 		System.out.println("           ");
 		System.out.println("           ");
 		
-	
 		
 		int indexCounterDeck=5;
 		int boardCounterUser= 0 ;
@@ -32,7 +29,31 @@ public class Board{
 		
 		boardCardsForUser[boardCounterUser++]=BoardInstance.Deck[indexCounterDeck++];
 		boardCardsForCPU[boardCounterCpu++]= BoardInstance.Deck[indexCounterDeck++];
-		return  "kaan" ;  // (boardCardsForUser[0].getNumberAsInt()+" " + boardCardsForUser[0].Colour +" " + boardCardsForUser[0].Signs);
+		
+		
+		for(int i = 0 ; i<4; i++){
+			boardCardsForUser[i] = BoardInstance.Deck[indexCounterDeck];
+			indexCounterDeck ++;
+			boardCardsForCPU[i] = BoardInstance.Deck[indexCounterDeck];
+			indexCounterDeck++;
+		}
+		
+		System.out.println(boardCardsForUser[2].getColour());
+		
+		System.out.println(getBoardCardsForUserNumber(2));
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		boardCardsForUser[boardCounterUser++]=BoardInstance.Deck[indexCounterDeck++];
+		boardCardsForCPU[boardCounterCpu++]= BoardInstance.Deck[indexCounterDeck++];
+		return  "" ;  // (boardCardsForUser[0].getNumberAsInt()+" " + boardCardsForUser[0].Colour +" " + boardCardsForUser[0].Signs);
+		
 		
 		
 		
@@ -44,18 +65,18 @@ public class Board{
 	int scoreUser = 0 ;
 		int userHasThatMuchCardOnBoard=3;  		//  kart ttıkca artacak
 		for(int i = 0 ; i < userHasThatMuchCardOnBoard ; i ++){ 
-			if (BoardInstance.getUserDeckMainSigns(i).equals("+")){
-				System.out.print(BoardInstance.getUserDeckMainSigns(i) + "" +BoardInstance.getUserDeckMainNumber(i)+ " " + BoardInstance.getUserDeckMainColour(i) + "    ");
-				scoreUser = scoreUser + BoardInstance.getUserDeckMainNumber(i);
-			}else if (BoardInstance.getUserDeckMainSigns(i).equals("-")){
-				System.out.print(BoardInstance.getUserDeckMainSigns(i) + "" +BoardInstance.getUserDeckMainNumber(i)+ " " + BoardInstance.getUserDeckMainColour(i) + "    ");
-				scoreUser = scoreUser - BoardInstance.getUserDeckMainNumber(i);
-			}else if (BoardInstance.getUserDeckMainSigns(i).equals("flip")){
+			if (getBoardCardsForUserSigns(i).equals("+")){
+				System.out.print(getBoardCardsForUserSigns(i) + "" +getBoardCardsForUserNumber(i)+ " " + getBoardCardsForUserColour(i) + "    ");
+				scoreUser = scoreUser + getBoardCardsForUserNumber(i);
+			}else if (getBoardCardsForUserSigns(i).equals("-")){
+				System.out.print(getBoardCardsForUserSigns(i) + "" +getBoardCardsForUserNumber(i)+ " " + getBoardCardsForUserColour(i) + "    ");
+				scoreUser = scoreUser - getBoardCardsForUserNumber(i);
+			}else if (getBoardCardsForUserSigns(i).equals("flip")){
 				System.out.print("  +/-  " );
-				scoreUser  = scoreUser + -2 * BoardInstance.getUserDeckMainNumber(i-1);
+				scoreUser  = scoreUser + -2 * getBoardCardsForUserNumber(i-1);
 			}else {
 				System.out.print(" x2 " );	
-				scoreUser = scoreUser + BoardInstance.getUserDeckMainNumber(i-1);
+				scoreUser = scoreUser + getBoardCardsForUserNumber(i-1);
 			}
 		}	
 			
@@ -65,34 +86,53 @@ public class Board{
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
 	public String boardReaderCpu (){     // tam fonksiyonlu değil
 		int scoreCpu = 0;
 		int cpuHasThatMuchCardOnBoard = 3 ;    		   // kart attıkca artacak 
 		for(int i = 0 ; i < cpuHasThatMuchCardOnBoard ; i ++){ 
-			if (BoardInstance.getCpuDeckMainSigns(i).equals("+")){
-				System.out.print(BoardInstance.getCpuDeckMainSigns(i) + "" +BoardInstance.getCpuDeckMainNumber(i)+ " " + BoardInstance.getCpuDeckMainColour(i) + "    ");
-				scoreCpu = scoreCpu + BoardInstance.getCpuDeckMainNumber(i);
-			}else if (BoardInstance.getCpuDeckMainSigns(i).equals("-")){
-				System.out.print(BoardInstance.getCpuDeckMainSigns(i) + "" +BoardInstance.getCpuDeckMainNumber(i)+ " " + BoardInstance.getCpuDeckMainColour(i) + "    ");
-				scoreCpu = scoreCpu - BoardInstance.getCpuDeckMainNumber(i);
-			}else if (BoardInstance.getCpuDeckMainSigns(i).equals("flip")){
+			if (getBoardCardsCpuUserSigns(i).equals("+")){
+				System.out.print(getBoardCardsCpuUserSigns(i) + "" +getBoardCardsForCpuNumber(i)+ " " + getBoardCardsForCpuColour(i) + "    ");
+				scoreCpu = scoreCpu + getBoardCardsForCpuNumber(i);
+			}else if (getBoardCardsCpuUserSigns(i).equals("-")){
+				System.out.print(getBoardCardsCpuUserSigns(i) + "" +getBoardCardsForCpuNumber(i)+ " " + getBoardCardsForCpuColour(i) + "    ");
+				scoreCpu = scoreCpu - getBoardCardsForCpuNumber(i);
+			}else if (getBoardCardsCpuUserSigns(i).equals("flip")){
 				System.out.print("    +/-    " );
-				scoreCpu = scoreCpu + -2 * BoardInstance.getCpuDeckMainNumber(i-1);
+				scoreCpu = scoreCpu + -2 * getBoardCardsForCpuNumber(i-1);
 			}else {
 				System.out.print("   x2    " );
-				scoreCpu = scoreCpu + BoardInstance.getCpuDeckMainNumber(i-1);
+				scoreCpu = scoreCpu + getBoardCardsForCpuNumber(i-1);
 			}
 		}
 		System.out.println( " Computers Current Score  is " + scoreCpu);
 		return " " ;
 		}		
+	
+	
+	public int getBoardCardsForUserNumber(int a){
+		return boardCardsForUser[a].getNumberAsInt();
+	}
+	public String getBoardCardsForUserColour(int a ){
+		return boardCardsForUser[a].getColour();
+	}
+	public String getBoardCardsForUserSigns(int a ) {
+		return boardCardsForUser[a].getSigns();
+	}
+	
+	
+	public int getBoardCardsForCpuNumber(int a){
+		return boardCardsForCPU[a].getNumberAsInt();
+	}
+	public String getBoardCardsForCpuColour(int a ){
+		return boardCardsForCPU[a].getColour();
+	}
+	public String getBoardCardsCpuUserSigns(int a ) {
+		return boardCardsForCPU[a].getSigns();
+	}
+	
+	
+
+	
 	
 	
 	
