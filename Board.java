@@ -3,7 +3,7 @@ public class Board{
 	Scanner sc = new Scanner(System.in);
 	
 	public Card[] boardCardsForUser = new Card[10]; // created a board for the game ; for each
-	public Card[] boardCardsForCPU = new Card[10];  // an array with 10 space is more than enough but I ll keep it with 10;
+	public Card[] boardCardsForCPU = new Card[10];  //  I ll keep it with 10;
 	// I dont need to try to hide them , it s cpu's deck 
 	public Deck BoardInstance = new Deck();
 	
@@ -11,14 +11,26 @@ public class Board{
 			
 	}
 	
-	public boolean game(){
+	public String game(){
+		System.out.println("                     CPU") ;
+		
+		int cpuHasThatMuchCard = BoardInstance.getCpuDeckMain().length;
+		for (int i = 0 ; i < cpuHasThatMuchCard ; i++){
+			System.out.print("       X  ");
+		}
+		System.out.println("           ");
+		System.out.println("           ");
+		
+		
+		
+		
 		int indexCounterDeck=5;
 		int boardCounterUser= 0 ;
 		int boardCounterCpu=0;
 		boardCardsForUser[boardCounterUser++]=BoardInstance.Deck[indexCounterDeck++];
 		boardCardsForCPU[boardCounterCpu++]= BoardInstance.Deck[indexCounterDeck++];
-		System.out.println(boardCardsForUser[0].Number+" " + boardCardsForUser[0].Colour +" " + boardCardsForUser[0].Signs);
-		return true;
+		return (boardCardsForUser[0].getNumberAsInt()+" " + boardCardsForUser[0].Colour +" " + boardCardsForUser[0].Signs);
+		
 		
 		
 	} 

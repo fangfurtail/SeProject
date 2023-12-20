@@ -147,6 +147,11 @@ public class Deck {
 		}
 	}
 	
+	
+	
+	
+	
+	//// my GET FUNCTIONS
 								 
 	public int getUserDeckMainNumber(int a){
 		return UserDeckMain[a].getNumberAsInt();
@@ -155,8 +160,14 @@ public class Deck {
 		return UserDeckMain[a].getColour();
 	
 	} 
+	public int howManyCards (){
+		return CpuDeckMain.length;
+	}
 	public Card[] getCpuDeckMain(){
 		return CpuDeckMain;
+	}
+	public String getUserDeckMain(int a ){
+		return UserDeckMain[a].getColour();
 	}
 	public Card[] getDeck(){
 		return Deck;
