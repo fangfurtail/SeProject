@@ -12,14 +12,38 @@ public class Board{
 	}
 	
 	public String game(){
-		System.out.println("                     CPU") ;
+		int scoreCpu = 0;
+		int scoreUser = 0 ;
 		
-		int cpuHasThatMuchCard = BoardInstance.getCpuDeckMain().length;
-		for (int i = 0 ; i < cpuHasThatMuchCard ; i++){
+		
+		
+		
+		//    !!!   bunları user değil cpu yapacaksın!!!    
+		
+		System.out.println("                     CPU") ;
+		int cpuHasThatMuchCardOnDeck = 3;
+		int cpuHasThatMuchCardOnHand = BoardInstance.getCpuDeckMain().length;
+		for (int i = 0 ; i < cpuHasThatMuchCardOnHand ; i++){
 			System.out.print("       X  ");
 		}
 		System.out.println("           ");
 		System.out.println("           ");
+		for(int i = 0 ; i < cpuHasThatMuchCardOnDeck ; i ++){ 
+			if (BoardInstance.getCpuDeckMainSigns(i).equals("+")){
+				System.out.print(BoardInstance.getCpuDeckMainSigns(i) + "" +BoardInstance.getCpuDeckMainNumber(i)+ " " + BoardInstance.getCpuDeckMainColour(i) + "    ");
+				scoreCpu = scoreCpu + BoardInstance.getCpuDeckMainNumber(i);
+			}else {
+				System.out.print(BoardInstance.getCpuDeckMainSigns(i) + "" +BoardInstance.getCpuDeckMainNumber(i)+ " " + BoardInstance.getCpuDeckMainColour(i) + "    ");
+				scoreCpu = scoreCpu - BoardInstance.getCpuDeckMainNumber(i);
+			}	
+		}
+		System.out.println(scoreCpu);
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -29,7 +53,7 @@ public class Board{
 		int boardCounterCpu=0;
 		boardCardsForUser[boardCounterUser++]=BoardInstance.Deck[indexCounterDeck++];
 		boardCardsForCPU[boardCounterCpu++]= BoardInstance.Deck[indexCounterDeck++];
-		return (boardCardsForUser[0].getNumberAsInt()+" " + boardCardsForUser[0].Colour +" " + boardCardsForUser[0].Signs);
+		return  "kaan" ;  // (boardCardsForUser[0].getNumberAsInt()+" " + boardCardsForUser[0].Colour +" " + boardCardsForUser[0].Signs);
 		
 		
 		

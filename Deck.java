@@ -151,18 +151,33 @@ public class Deck {
 	
 	
 	
-	//// my GET FUNCTIONS
+	//// my GET FUNCTIONS to get values from cards
 								 
 	public int getUserDeckMainNumber(int a){
 		return UserDeckMain[a].getNumberAsInt();
 	}
 	public String getUserDeckMainColour(int a ){
 		return UserDeckMain[a].getColour();
-	
-	} 
-	public int howManyCards (){
-		return CpuDeckMain.length;
 	}
+	public String getUserDeckMainSigns(int a ) {
+		return UserDeckMain[a].getSigns();
+	}
+	
+	public int getCpuDeckMainNumber(int a){
+		return CpuDeckMain[a].getNumberAsInt();
+	}
+	public String getCpuDeckMainColour(int a ){
+		return CpuDeckMain[a].getColour();
+	}
+	public String getCpuDeckMainSigns(int a ) {
+		return CpuDeckMain[a].getSigns();
+	}
+	
+	
+	
+	
+	
+	
 	public Card[] getCpuDeckMain(){
 		return CpuDeckMain;
 	}

@@ -15,7 +15,7 @@ public class Main{
 		main.BoardInstance.printCpuDeckMain();
 		main.BoardInstance.printUserDeckMain();
 		System.out.println(main.method());
-		System.out.println(main.BoardInstance.getUserDeckMain(2));
+		//System.out.println(main.BoardInstance.getUserDeckMain(2));
 		System.out.println(main.game());
 		
     }
