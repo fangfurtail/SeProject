@@ -11,7 +11,7 @@ public class Deck {
 	private int deckCreaterIndex2= 0; 	  
 	private int deckCreaterIndex3= 0; 
 	private Card [] TopUpCards	;		  // will be used to add extra 3 cards to decks
-	private Card[] Deck ;		// since now I have a deck , Cards can store 3 values
+	public Card[] Deck ;		// since now I have a deck , Cards can store 3 values
 	private Card[] UserDeckNotMain ; // I need to get 10 cards for the user to select 4 of them.
 	private Card[] UserDeckMain  ;	   // Selected 4 
 	private Card[] CpuDeckNotMain ;  
@@ -26,7 +26,7 @@ public class Deck {
 			
 	
 	
-	
+    // Integer.parseInt(Deck[].Number);
 	public Deck() { //// With this I succesfully created a game deck , each has a color, number value and a sign
 		Deck = new Card [40];
 		TopUpCards = new Card [48];    // I ll use them to add random cards to each players deck,
@@ -41,6 +41,8 @@ public class Deck {
 		
 			}
 		}
+		
+		
 	}
 	
 	
@@ -143,10 +145,24 @@ public class Deck {
 			randomValueforPicking++;
 			randomValueforPicking2++;
 		}
-	
-		
-		
 	}
+	
+								 
+	public int getUserDeckMainNumber(int a){
+		return UserDeckMain[a].getNumberAsInt();
+	}
+	public String getUserDeckMainColour(int a ){
+		return UserDeckMain[a].getColour();
+	
+	} 
+	public Card[] getCpuDeckMain(){
+		return CpuDeckMain;
+	}
+	public Card[] getDeck(){
+		return Deck;
+	}
+		
+	
 		
 		
 		
@@ -220,23 +236,7 @@ public void printUserDeckMain() {
     }
 
 
-    public static void main(String[] args) {
-        Deck deckInstance = new Deck();
-        deckInstance.shuffle();
-
-        // Print the entire deck
-        
-
-        // Print UserDeckNotMain
-        deckInstance.giveCard();
-		deckInstance.printDeck();
-        deckInstance.printUserDeckNotMain();
-		deckInstance.printCpuDeckNotMain();
-		//deckInstance.printTopUpCards();
-		deckInstance.printCpuDeckMain();
-		deckInstance.printUserDeckMain();
-		
-    }
+   
 }
 	
 
@@ -244,36 +244,3 @@ public void printUserDeckMain() {
 	
 	
 	
-	
-	
-	/*
-	String tempValue =" " ;
-String [] arr = {"a","b","c","d","e"};
-for(int t =  0 ; t < arr.length ; t++ ){
-	int randIndex = rd.nextInt(arr.length);
-tempValue = arr[randIndex]; 
-arr[randIndex] = arr[t];
-arr[t]= tempValue;
-
-}
-System.out.println("shuffld  ARRAY");
-        for (String element : arr) {
-            System.out.println(element);
-        }
-}
-}
-
-/*a rd 1 3
-b 2
-c 3  i 1
-int b = int a ;
-a 1
-b 1 
-c 3
-a = c 
-c = b 
-a 3
-b 1
-c 1
-I LL IMPLEMENT THIS SHUFFLING ALGORITHM TO MY PROJECT !
- */
