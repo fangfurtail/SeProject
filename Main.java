@@ -21,6 +21,11 @@ public class Main{
 		System.out.println(main.game());
 		System.out.println(main.boardReaderUser());
 		System.out.println(main.game());
+			System.out.println(main.boardReaderUser());
+		System.out.println(main.game());
+			System.out.println(main.boardReaderUser());
+		System.out.println(main.game());
+			System.out.println(main.boardReaderUser());
 		System.out.println(main.boardReaderUser());
 		main.BoardInstance.printDeck();
 		

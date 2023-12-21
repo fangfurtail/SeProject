@@ -7,8 +7,8 @@ public class Board{
 	// I dont need to try to hide them , it s cpu's deck 
 	public Deck BoardInstance = new Deck();
 		int indexCounterDeck=5;
-		int boardCounterUser= 0 ;
-		int boardCounterCpu=0;
+		int indexBoardUser= 1 ;
+		int indexBoardCpu=1;
 		int userHasThatMuchCardOnBoard=1;
 		int cpuHasThatMuchCardOnBoard = 1;
 		
@@ -26,67 +26,30 @@ public class Board{
 		System.out.println("Your Choice --->  1) DRAW A CARD   2)MY CARD  3)STAND  4)SKIP ");
 		int answer = sc.nextInt();
 
-        switch (answer) {
+      switch (answer) {
             case 1:
-                boardCardsForUser[boardCounterUser+1] = BoardInstance.Deck[indexCounterDeck];
+				boardCardsForUser[indexBoardUser++] = BoardInstance.Deck[indexCounterDeck];
+			indexCounterDeck ++;
 				userHasThatMuchCardOnBoard = userHasThatMuchCardOnBoard + 1 ;
 				System.out.println(userHasThatMuchCardOnBoard + " game");
                 break;
             case 2:
-                System.out.println("Which card would you like to select (1 - 4 )");
-				int answer2 = sc.nextInt();
-				switch (answer2) {
-            case 1:
-                  
-                break;
-            case 2:
-                // Handle my card
+            
                 break;
             case 3:
-                // Handle stand
+                // Stand
                 break;
             case 4:
-                // Handle skip
+                // Skip
                 break;
             default:
                 System.out.println("Invalid choice");
                 break;
         }
-				
-				
-				
-				
-				
-				
-				
-				
-                break;
-            case 3:
-                // Handle stand
-                break;
-            case 4:
-                // Handle skip
-                break;
-            default:
-                System.out.println("Invalid choice");
-                break;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		}
-
 		return  "" ;  // (boardCardsForUser[0].getNumberAsInt()+" " + boardCardsForUser[0].Colour +" " + boardCardsForUser[0].Signs);
 		
 		
+				
 		
 		
 	} 
@@ -95,18 +58,18 @@ public class Board{
 	
 	public String boardReaderUser (){
 		
-
+	boardCardsForUser[0] = BoardInstance.Deck[indexCounterDeck];
 		
 		
-	for(int i = 0 ; i<userHasThatMuchCardOnBoard ; i++){              // I AM DEFINING THE FIRST BEGINNING BOARD           						
+	/*for(int i = 0 ; i<2 ; i++){              // I AM DEFINING THE FIRST BEGINNING BOARD           						
 			boardCardsForUser[i] = BoardInstance.Deck[indexCounterDeck];
 			indexCounterDeck ++;
-			boardCounterUser++;
+			indexBoardUser++;
 			boardCardsForCPU[i] = BoardInstance.Deck[indexCounterDeck];
-			indexCounterDeck++;
-			boardCounterCpu++;
+			//indexCounterDeck++;
+			indexBoardCpu++;
 		}	
-		
+		*/
 		
 		
 	int scoreUser = 0 ;
@@ -139,8 +102,11 @@ public class Board{
 	
 	
 	public String boardReaderCpu (){     // tam fonksiyonlu değil
-		int scoreCpu = 0;
+	
+		boardCardsForCPU[0] = BoardInstance.Deck[indexCounterDeck];
 		
+		int scoreCpu = 0;
+		boardCardsForCPU[0] = BoardInstance.Deck[indexCounterDeck];
 		System.out.print("          " );
 		for(int i = 0 ; i < cpuHasThatMuchCardOnBoard ; i ++){ 
 		
