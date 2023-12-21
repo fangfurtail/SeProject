@@ -17,12 +17,13 @@ public class Main{
 		
 		System.out.println(main.boardReaderUser());  // bu default il raundu dağıtıyor
 		System.out.println(main.boardReaderCpu());
-		main.BoardInstance.printUserDeckMain();
+		//main.BoardInstance.printUserDeckMain();
 		System.out.println(main.game());
-		System.out.println(main.boardReaderUser());
+		
 		//System.out.println(main.game());
-		main.BoardInstance.printDeck();
+		//main.BoardInstance.printDeck();
 		System.out.println(main.boardReaderUser());
+		System.out.println(main.boardReaderCpu());
 		//System.out.println(main.method());
 		//System.out.println(main.BoardInstance.getUserDeckMain(2));
 		//System.out.println(main.game());

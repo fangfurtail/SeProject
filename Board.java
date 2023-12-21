@@ -11,65 +11,116 @@ public class Board{
 		int indexBoardCpu=1;
 		int userHasThatMuchCardOnBoard=1;
 		int cpuHasThatMuchCardOnBoard = 1;
+		int scoreCpu = 0;
 		
 	public Board(){
 			
 	}
 	
 	public String game(){
+		boolean keyToUser = true;
+		boolean keyToCpu =  true;
+		int answer;
+		int kaan = 0 ;
 		
 		
 		
 		
 		
 		
-		System.out.println("Your Choice --->  1) DRAW A CARD   2)MY CARD  3)STAND  4)SKIP ");
-		
-		boolean key = true;
-		while (key){
-			int answer = sc.nextInt();
-			switch (answer) {
-				case 1:
-					boardCardsForUser[indexBoardUser++] = BoardInstance.Deck[indexCounterDeck];
-				indexCounterDeck ++;
-					userHasThatMuchCardOnBoard = userHasThatMuchCardOnBoard + 1 ;
-					System.out.println(userHasThatMuchCardOnBoard + " game");
-					key= false;
-					
-					break;
-				case 2:
-					System.out.println("WHICH CARD : 1 , 2 , 3 , 4");
-					int answer2 = sc.nextInt();
-					if (answer2 >= 1 && answer2 <= 4) {
-						boardCardsForUser[indexBoardUser++] = BoardInstance.UserDeckMain[answer2 - 1];
+			kaan = kaan+1;
+			while (keyToUser){
+				System.out.println("Your Choice --->  1) DRAW A CARD   2)MY CARD  3)STAND  4)SKIP ");
+				answer = sc.nextInt();
+				switch (answer) {
+					case 1:
+						boardCardsForUser[indexBoardUser++] = BoardInstance.Deck[indexCounterDeck];
+						indexCounterDeck ++;
 						userHasThatMuchCardOnBoard = userHasThatMuchCardOnBoard + 1 ;
-					key= false;
-				
-					}else {
-						System.out.println("Invalid card selection");
-				
-					}
-				
-					break;
-				case 3:
+						System.out.println(userHasThatMuchCardOnBoard + " game");
+						keyToUser= false;
+						
+						break;
+					case 2:
+						System.out.println("WHICH CARD : 1 , 2 , 3 , 4");
+						int answer2 = sc.nextInt();
+						if (answer2 >= 1 && answer2 <= 4) {
+							boardCardsForUser[indexBoardUser++] = BoardInstance.UserDeckMain[answer2 - 1];
+							userHasThatMuchCardOnBoard = userHasThatMuchCardOnBoard + 1 ;
+						keyToUser= false;
 					
-					break;
-				case 4:
-					// Skip
-					break;
-				default:
-				 
-					System.out.println("Invalid choice");
-					break;
+						}else {
+							System.out.println("Invalid card selection");
+					
+						}
+					
+						break;
+					case 3:
+						
+						break;
+					case 4:
+						// Skip
+						break;
+					default:
+					 
+						System.out.println("Invalid choice");
+						break;
+				}
 			}
-		}
-		return  "" ;  // (boardCardsForUser[0].getNumberAsInt()+" " + boardCardsForUser[0].Colour +" " + boardCardsForUser[0].Signs);
+			System.out.println(" Computers TURN");
+			
+			
+				if (scoreCpu < 20){          // that is cpu drawing a card 
+					boardCardsForCPU[indexBoardCpu++] = BoardInstance.Deck[indexCounterDeck];
+					cpuHasThatMuchCardOnBoard = cpuHasThatMuchCardOnBoard+1;
+					indexCounterDeck ++;
+				}
+						
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return  "" ;
 		
 		
 				
 		
 		
 	} 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -122,7 +173,7 @@ public class Board{
 	
 		boardCardsForCPU[0] = BoardInstance.Deck[indexCounterDeck];
 		
-		int scoreCpu = 0;
+		scoreCpu = 0;
 		boardCardsForCPU[0] = BoardInstance.Deck[indexCounterDeck];
 		System.out.print("          " );
 		for(int i = 0 ; i < cpuHasThatMuchCardOnBoard ; i ++){ 
