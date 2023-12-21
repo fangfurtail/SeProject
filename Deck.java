@@ -240,10 +240,11 @@ public void printUserDeckNotMain() {
     }
 }
 public void printCpuDeckMain() {
-    System.out.println("CpuDeckMain contents:");
+    System.out.println("              CpuDeckMain contents:");
     for (Card card : CpuDeckMain) {
-        System.out.println(card.wholeCardToString());
+        System.out.print(card.wholeCardToString());
     }
+	System.out.println();
 }
 
 public void printTopUpCards() {
@@ -255,10 +256,11 @@ public void printTopUpCards() {
     }
 } 
 public void printUserDeckMain() {
-        System.out.println("UserDeckMain contents:");
+        System.out.println("              Your Deck");
         for (Card card : UserDeckMain) {
-            System.out.println(card.wholeCardToString());
+            System.out.print("    " +card.wholeCardToString());
         }
+		System.out.println();
     }
 
 

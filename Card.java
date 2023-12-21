@@ -19,11 +19,11 @@ public class Card {
 		return Number;
 	}
 	public String getSigns(){
-		return Signs;
+		return Signs; 
 	}
 	
 	public String wholeCardToString() {
-		return Colour + " " + 	Number + "  " + Signs;
+		return Colour + " " + 	Number + "  " + Signs + "  " ;
 	}
 	public int getNumberAsInt() {
             return Integer.parseInt(Number);
@@ -33,8 +33,5 @@ public class Card {
 		
 		Card CardInstance = new Card("Red" , "10","+");
 		
-		System.out.println(CardInstance.wholeCardToString());
-		int numberAsInt = CardInstance.getNumberAsInt();
-		System.out.println(numberAsInt);
 		}
 }
