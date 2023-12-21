@@ -102,10 +102,10 @@ public class Deck {
 				CpuDeckNotMain[8+i] = TopUpCards[randomValueforPicking3];
 			}else {												// this is %20
 				if ( randomValueforPicking % 2 == 0 ){          
-					CpuDeckNotMain[8 + i] = new Card("flip", "flip", "flip");
+					CpuDeckNotMain[8 + i] = new Card("", "", "flip");
 					
 				}else{          
-					 CpuDeckNotMain[8 + i] = new Card("double", "double", "double");
+					 CpuDeckNotMain[8 + i] = new Card("", "", "double");
 				}
 				
 			}
@@ -113,10 +113,10 @@ public class Deck {
 				UserDeckNotMain[8+i] = TopUpCards[randomValueforPicking3];
 			}else {												// this is %20
 				if ( randomValueforPicking2 % 2 == 0 ){          
-					UserDeckNotMain[8 + i] = new Card("flip", "flip", "flip");
+					UserDeckNotMain[8 + i] = new Card("", "", "flip");
 					
 				}else{          
-					 UserDeckNotMain[8 + i] = new Card("double", "double", "double");
+					 UserDeckNotMain[8 + i] = new Card("", "", "double");
 				}
 				
 			}		
@@ -152,6 +152,14 @@ public class Deck {
 	
 	
 	//// my GET FUNCTIONS to get values from cards
+	
+	//public Card[] getCpuDeckMain(){
+		//return CpuDeckMain;
+	
+	
+	
+	
+	
 								 
 	public int getUserDeckMainNumber(int a){
 		return UserDeckMain[a].getNumberAsInt();

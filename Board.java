@@ -9,6 +9,8 @@ public class Board{
 		int indexCounterDeck=5;
 		int boardCounterUser= 0 ;
 		int boardCounterCpu=0;
+		int userHasThatMuchCardOnBoard=1;
+		int cpuHasThatMuchCardOnBoard = 1;
 		
 	public Board(){
 			
@@ -26,8 +28,9 @@ public class Board{
 
         switch (answer) {
             case 1:
-                boardCardsForUser[boardCounterUser] = BoardInstance.Deck[indexCounterDeck++];
-				
+                boardCardsForUser[boardCounterUser+1] = BoardInstance.Deck[indexCounterDeck];
+				userHasThatMuchCardOnBoard = userHasThatMuchCardOnBoard + 1 ;
+				System.out.println(userHasThatMuchCardOnBoard + " game");
                 break;
             case 2:
                 System.out.println("Which card would you like to select (1 - 4 )");
@@ -95,7 +98,7 @@ public class Board{
 
 		
 		
-	for(int i = 0 ; i<1; i++){              // I AM DEFINING THE FIRST BEGINNING BOARD           						
+	for(int i = 0 ; i<userHasThatMuchCardOnBoard ; i++){              // I AM DEFINING THE FIRST BEGINNING BOARD           						
 			boardCardsForUser[i] = BoardInstance.Deck[indexCounterDeck];
 			indexCounterDeck ++;
 			boardCounterUser++;
@@ -107,11 +110,12 @@ public class Board{
 		
 		
 	int scoreUser = 0 ;
-		int userHasThatMuchCardOnBoard=1;  	
+	 	
 
 
 		//  kart ttıkca artacak
 		System.out.print("          " );
+		System.out.println(userHasThatMuchCardOnBoard + " board");
 		for(int i = 0 ; i < userHasThatMuchCardOnBoard ; i ++){ 
 			if (getBoardCardsForUserSigns(i).equals("+")){
 				System.out.print(getBoardCardsForUserSigns(i) + "" +getBoardCardsForUserNumber(i)+ " " + getBoardCardsForUserColour(i) + "    ");
@@ -136,7 +140,7 @@ public class Board{
 	
 	public String boardReaderCpu (){     // tam fonksiyonlu değil
 		int scoreCpu = 0;
-		int cpuHasThatMuchCardOnBoard = 1 ;    // kart attıkca artacak   BUNA DIKKAT ET !!!!!!!!!!!!!!!!!!!1
+		
 		System.out.print("          " );
 		for(int i = 0 ; i < cpuHasThatMuchCardOnBoard ; i ++){ 
 		
