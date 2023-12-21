@@ -24,28 +24,45 @@ public class Board{
 		
 		
 		System.out.println("Your Choice --->  1) DRAW A CARD   2)MY CARD  3)STAND  4)SKIP ");
-		int answer = sc.nextInt();
-
-      switch (answer) {
-            case 1:
-				boardCardsForUser[indexBoardUser++] = BoardInstance.Deck[indexCounterDeck];
-			indexCounterDeck ++;
-				userHasThatMuchCardOnBoard = userHasThatMuchCardOnBoard + 1 ;
-				System.out.println(userHasThatMuchCardOnBoard + " game");
-                break;
-            case 2:
-            
-                break;
-            case 3:
-                // Stand
-                break;
-            case 4:
-                // Skip
-                break;
-            default:
-                System.out.println("Invalid choice");
-                break;
-        }
+		
+		boolean key = true;
+		while (key){
+			int answer = sc.nextInt();
+			switch (answer) {
+				case 1:
+					boardCardsForUser[indexBoardUser++] = BoardInstance.Deck[indexCounterDeck];
+				indexCounterDeck ++;
+					userHasThatMuchCardOnBoard = userHasThatMuchCardOnBoard + 1 ;
+					System.out.println(userHasThatMuchCardOnBoard + " game");
+					key= false;
+					
+					break;
+				case 2:
+					System.out.println("WHICH CARD : 1 , 2 , 3 , 4");
+					int answer2 = sc.nextInt();
+					if (answer2 >= 1 && answer2 <= 4) {
+						boardCardsForUser[indexBoardUser++] = BoardInstance.UserDeckMain[answer2 - 1];
+						userHasThatMuchCardOnBoard = userHasThatMuchCardOnBoard + 1 ;
+					key= false;
+				
+					}else {
+						System.out.println("Invalid card selection");
+				
+					}
+				
+					break;
+				case 3:
+					
+					break;
+				case 4:
+					// Skip
+					break;
+				default:
+				 
+					System.out.println("Invalid choice");
+					break;
+			}
+		}
 		return  "" ;  // (boardCardsForUser[0].getNumberAsInt()+" " + boardCardsForUser[0].Colour +" " + boardCardsForUser[0].Signs);
 		
 		

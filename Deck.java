@@ -13,9 +13,9 @@ public class Deck {
 	private Card [] TopUpCards	;		  // will be used to add extra 3 cards to decks
 	public Card[] Deck ;		// since now I have a deck , Cards can store 3 values
 	private Card[] UserDeckNotMain ; // I need to get 10 cards for the user to select 4 of them.
-	private Card[] UserDeckMain  ;	   // Selected 4 
+	public Card[] UserDeckMain  ;	   // Selected 4 
 	private Card[] CpuDeckNotMain ;  
-	private Card[] CpuDeckMain  ;  
+	public Card[] CpuDeckMain  ;  
 	private Card[] EmptyDeck;
 	
 	

@@ -20,15 +20,9 @@ public class Main{
 		main.BoardInstance.printUserDeckMain();
 		System.out.println(main.game());
 		System.out.println(main.boardReaderUser());
-		System.out.println(main.game());
-			System.out.println(main.boardReaderUser());
-		System.out.println(main.game());
-			System.out.println(main.boardReaderUser());
-		System.out.println(main.game());
-			System.out.println(main.boardReaderUser());
-		System.out.println(main.boardReaderUser());
+		//System.out.println(main.game());
 		main.BoardInstance.printDeck();
-		
+		System.out.println(main.boardReaderUser());
 		//System.out.println(main.method());
 		//System.out.println(main.BoardInstance.getUserDeckMain(2));
 		//System.out.println(main.game());
