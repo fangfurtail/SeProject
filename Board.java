@@ -37,12 +37,12 @@ public class Board{
 		boolean keyToUser = true;
 		boolean keyToCpu =  true;
 		int answer;
-		int kaan = 0 ;
+		int maxGame = 0 ;
 	
 	
 	
-		while (kaan < 5 ){
-			kaan++;
+		while (maxGame< 5 ){
+			maxGame++;
 			
 			
 			System.out.println("\n\n\n\n\n\n\n\n");
@@ -53,7 +53,7 @@ public class Board{
 			
 			
 			while (keyToUser){
-				keyToCpu =  true;
+				
 				System.out.println("Your Choice --->  1) DRAW A CARD   2)MY CARD  3)STAND  4)SKIP ");
 				answer = sc.nextInt();
 				switch (answer) {
@@ -63,6 +63,7 @@ public class Board{
 						userHasThatMuchCardOnBoard = userHasThatMuchCardOnBoard + 1 ;
 						System.out.println(userHasThatMuchCardOnBoard + " game");
 						keyToUser= false;
+						keyToCpu= true;
 						
 						break;
 					case 2:
@@ -72,6 +73,7 @@ public class Board{
 							boardCardsForUser[indexBoardUser++] = BoardInstance.UserDeckMain[answer2 - 1];
 							userHasThatMuchCardOnBoard = userHasThatMuchCardOnBoard + 1 ;
 							keyToUser= false;
+							keyToCpu= true;
 							
 					
 						}else {
@@ -81,45 +83,58 @@ public class Board{
 					
 						break;
 					case 3:
-						for( int a = 0 ; a < 4 ; a++){
-							if(getDeckCardsForCpuNumber(a)+ scoreCpu >17){
-							boardCardsForCPU[indexBoardCpu++]=BoardInstance.CpuDeckMain[a];
-							cpuHasThatMuchCardOnBoard++;
-							keyToUser= false;																		// there is no indexCounterDeck because cpu is taking the card from its deck
-							}else{
-								boardCardsForCPU[indexBoardCpu++] = BoardInstance.Deck[indexCounterDeck];
-								cpuHasThatMuchCardOnBoard = cpuHasThatMuchCardOnBoard+1;
-								indexCounterDeck++;
-								keyToUser= false;
-								keyToCpu = false;
-								
-								break;
-							}
-						}
+						
+						keyToUser= false;
+						keyToCpu= true;
 						break;
+				
 					case 4:
-						// Skip
+						keyToUser= false;
 						break;
 					default:
 					 
 						System.out.println("Invalid choice");
+						keyToUser= true;
 						break;
 				}
 				
 			}
 			
-			
-			
-				
-					if (scoreCpu < 14){          // that is cpu drawing a card 
+			while(keyToCpu){
+			for( int a = 0 ; a < 4 ; a++){
+				if(getDeckCardsForCpuNumber(a)+ scoreCpu >=17 && getDeckCardsForCpuNumber(a)+ scoreCpu <=20){
+							boardCardsForCPU[indexBoardCpu++]=BoardInstance.CpuDeckMain[a];
+							cpuHasThatMuchCardOnBoard++;
+								// there is no indexCounterDeck because cpu is taking the card from its deck
+							keyToCpu= false;
+							keyToUser=true;		
+				break;
+				}
+							
+			}	
+			if(scoreCpu<14 && keyToCpu ==true){
+				boardCardsForCPU[indexBoardCpu++] = BoardInstance.Deck[indexCounterDeck];
+				cpuHasThatMuchCardOnBoard = cpuHasThatMuchCardOnBoard+1;
+				indexCounterDeck++;
+				keyToCpu= false;
+				keyToUser=true;
+			}else {
+				keyToCpu= false;
+				keyToUser=true;
+								
+											
+			}
+			}
+		}		
+					/*if (scoreCpu < 14){          // that is cpu drawing a card 
 						boardCardsForCPU[indexBoardCpu++] = BoardInstance.Deck[indexCounterDeck];
 						cpuHasThatMuchCardOnBoard = cpuHasThatMuchCardOnBoard+1;
 						indexCounterDeck ++;
 						keyToUser = true ;
 						
-					}
+					}*/
 				
-		}
+		
 	
 		
 		
@@ -215,19 +230,24 @@ public class Board{
 	public String getBoardCardsForUserSigns(int a ) {
 		return boardCardsForUser[a].getSigns();
 	}
-	
-	
+	public int getDeckCardsForCpuNumber(int a ){
+		if(BoardInstance.CpuDeckMain[a].getSigns() .equals("-")){
+			return   BoardInstance.CpuDeckMain[a].getNumberAsInt();
+		}else {
+			return BoardInstance.CpuDeckMain[a].getNumberAsInt();
+		}
+	}
 	public int getBoardCardsForCpuNumber(int a){
 		return boardCardsForCPU[a].getNumberAsInt();
 	}
 	
-	public int getDeckCardsForCpuNumber(int a ) {                           // For reading Cpu 
+	/*public int getDeckCardsForCpuNumber(int a ) {                           // For reading Cpu 
 		if( BoardInstance.CpuDeckMain[a].getNumberAsInt() < 0){
 			return  -1 * BoardInstance.CpuDeckMain[a].getNumberAsInt();
 		}else {
 			return BoardInstance.CpuDeckMain[a].getNumberAsInt();
 		}
-	}	
+	}	*/
 	
 	public String getBoardCardsForCpuColour(int a ){
 		return boardCardsForCPU[a].getColour();
