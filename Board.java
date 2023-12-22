@@ -41,7 +41,7 @@ public class Board{
 	
 	
 	
-		while (kaan < 4 ){
+		while (kaan < 5 ){
 			kaan++;
 			
 			
@@ -53,6 +53,7 @@ public class Board{
 			
 			
 			while (keyToUser){
+				keyToCpu =  true;
 				System.out.println("Your Choice --->  1) DRAW A CARD   2)MY CARD  3)STAND  4)SKIP ");
 				answer = sc.nextInt();
 				switch (answer) {
@@ -71,6 +72,7 @@ public class Board{
 							boardCardsForUser[indexBoardUser++] = BoardInstance.UserDeckMain[answer2 - 1];
 							userHasThatMuchCardOnBoard = userHasThatMuchCardOnBoard + 1 ;
 							keyToUser= false;
+							
 					
 						}else {
 							System.out.println("Invalid card selection");
@@ -79,8 +81,21 @@ public class Board{
 					
 						break;
 					case 3:
-					
-				
+						for( int a = 0 ; a < 4 ; a++){
+							if(getDeckCardsForCpuNumber(a)+ scoreCpu >17){
+							boardCardsForCPU[indexBoardCpu++]=BoardInstance.CpuDeckMain[a];
+							cpuHasThatMuchCardOnBoard++;
+							keyToUser= false;																		// there is no indexCounterDeck because cpu is taking the card from its deck
+							}else{
+								boardCardsForCPU[indexBoardCpu++] = BoardInstance.Deck[indexCounterDeck];
+								cpuHasThatMuchCardOnBoard = cpuHasThatMuchCardOnBoard+1;
+								indexCounterDeck++;
+								keyToUser= false;
+								keyToCpu = false;
+								
+								break;
+							}
+						}
 						break;
 					case 4:
 						// Skip
@@ -92,17 +107,19 @@ public class Board{
 				}
 				
 			}
-			System.out.println(" Computers TURN");
 			
 			
-				if (scoreCpu < 14){          // that is cpu drawing a card 
-					boardCardsForCPU[indexBoardCpu++] = BoardInstance.Deck[indexCounterDeck];
-					cpuHasThatMuchCardOnBoard = cpuHasThatMuchCardOnBoard+1;
-					indexCounterDeck ++;
-					keyToUser = true ;
-					
-				}
-		}			
+			
+				
+					if (scoreCpu < 14){          // that is cpu drawing a card 
+						boardCardsForCPU[indexBoardCpu++] = BoardInstance.Deck[indexCounterDeck];
+						cpuHasThatMuchCardOnBoard = cpuHasThatMuchCardOnBoard+1;
+						indexCounterDeck ++;
+						keyToUser = true ;
+						
+					}
+				
+		}
 	
 		
 		
