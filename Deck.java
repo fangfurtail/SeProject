@@ -149,15 +149,10 @@ public class Deck {
 	
 	
 	
-	
-	
 	//// my GET FUNCTIONS to get values from cards
 	
 	//public Card[] getCpuDeckMain(){
 		//return CpuDeckMain;
-	
-	
-	
 	
 	
 								 
@@ -183,9 +178,6 @@ public class Deck {
 	
 	
 	
-	
-	
-	
 	public Card[] getCpuDeckMain(){
 		return CpuDeckMain;
 	}
@@ -196,29 +188,6 @@ public class Deck {
 		return Deck;
 	}
 		
-	
-		
-		
-		
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
 	
 	
     public void printDeck() {

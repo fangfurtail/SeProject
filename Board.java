@@ -12,6 +12,7 @@ public class Board{
 		int userHasThatMuchCardOnBoard=1;
 		int cpuHasThatMuchCardOnBoard = 1;
 		int scoreCpu = 0;
+		int scoreUser=0;
 		
 		
 		
@@ -69,7 +70,7 @@ public class Board{
 						if (answer2 >= 1 && answer2 <= 4) {
 							boardCardsForUser[indexBoardUser++] = BoardInstance.UserDeckMain[answer2 - 1];
 							userHasThatMuchCardOnBoard = userHasThatMuchCardOnBoard + 1 ;
-						keyToUser= false;
+							keyToUser= false;
 					
 						}else {
 							System.out.println("Invalid card selection");
@@ -78,7 +79,8 @@ public class Board{
 					
 						break;
 					case 3:
-						
+					
+				
 						break;
 					case 4:
 						// Skip
@@ -93,7 +95,7 @@ public class Board{
 			System.out.println(" Computers TURN");
 			
 			
-				if (scoreCpu < 20){          // that is cpu drawing a card 
+				if (scoreCpu < 14){          // that is cpu drawing a card 
 					boardCardsForCPU[indexBoardCpu++] = BoardInstance.Deck[indexCounterDeck];
 					cpuHasThatMuchCardOnBoard = cpuHasThatMuchCardOnBoard+1;
 					indexCounterDeck ++;
@@ -110,8 +112,9 @@ public class Board{
 				
 		
 		
-	} 
-
+		}
+	
+	
 	
 	
 	public String boardReaderUser (){
@@ -200,6 +203,15 @@ public class Board{
 	public int getBoardCardsForCpuNumber(int a){
 		return boardCardsForCPU[a].getNumberAsInt();
 	}
+	
+	public int getDeckCardsForCpuNumber(int a ) {                           // For reading Cpu 
+		if( BoardInstance.CpuDeckMain[a].getNumberAsInt() < 0){
+			return  -1 * BoardInstance.CpuDeckMain[a].getNumberAsInt();
+		}else {
+			return BoardInstance.CpuDeckMain[a].getNumberAsInt();
+		}
+	}	
+	
 	public String getBoardCardsForCpuColour(int a ){
 		return boardCardsForCPU[a].getColour();
 	}
