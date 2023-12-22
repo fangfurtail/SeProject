@@ -13,22 +13,44 @@ public class Board{
 		int cpuHasThatMuchCardOnBoard = 1;
 		int scoreCpu = 0;
 		
-	public Board(){
+		
+		
+		
+		
+		
+		
+	public String board(){
+			boardCardsForUser[0] = BoardInstance.Deck[indexCounterDeck];    //FIRST CARD ON THE TABLE IS NOT DEPENDING ON THE USER'S  CHOICE SO I ASSIGNED  IT HERE 
+			indexCounterDeck++;
 			
+			boardCardsForCPU[0] = BoardInstance.Deck[indexCounterDeck];
+			indexCounterDeck++;	
+		return "";
 	}
+	
+	
+	
+	
 	
 	public String game(){
 		boolean keyToUser = true;
 		boolean keyToCpu =  true;
 		int answer;
 		int kaan = 0 ;
-		
-		
-		
-		
-		
-		
-			kaan = kaan+1;
+	
+	
+	
+		while (kaan < 4 ){
+			kaan++;
+			
+			
+			System.out.println("\n\n\n\n\n\n\n\n");
+			BoardInstance.printCpuDeckMain();
+			boardReaderCpu ();
+			boardReaderUser();
+			BoardInstance.printUserDeckMain();
+			
+			
 			while (keyToUser){
 				System.out.println("Your Choice --->  1) DRAW A CARD   2)MY CARD  3)STAND  4)SKIP ");
 				answer = sc.nextInt();
@@ -66,6 +88,7 @@ public class Board{
 						System.out.println("Invalid choice");
 						break;
 				}
+				
 			}
 			System.out.println(" Computers TURN");
 			
@@ -74,23 +97,11 @@ public class Board{
 					boardCardsForCPU[indexBoardCpu++] = BoardInstance.Deck[indexCounterDeck];
 					cpuHasThatMuchCardOnBoard = cpuHasThatMuchCardOnBoard+1;
 					indexCounterDeck ++;
+					keyToUser = true ;
+					
 				}
-						
+		}			
 	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		return  "" ;
@@ -100,34 +111,12 @@ public class Board{
 		
 		
 	} 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	public String boardReaderUser (){
 		
-	boardCardsForUser[0] = BoardInstance.Deck[indexCounterDeck];
-		
+	
 		
 	/*for(int i = 0 ; i<2 ; i++){              // I AM DEFINING THE FIRST BEGINNING BOARD           						
 			boardCardsForUser[i] = BoardInstance.Deck[indexCounterDeck];
@@ -146,7 +135,7 @@ public class Board{
 
 		//  kart ttıkca artacak
 		System.out.print("          " );
-		System.out.println(userHasThatMuchCardOnBoard + " board");
+		
 		for(int i = 0 ; i < userHasThatMuchCardOnBoard ; i ++){ 
 			if (getBoardCardsForUserSigns(i).equals("+")){
 				System.out.print(getBoardCardsForUserSigns(i) + "" +getBoardCardsForUserNumber(i)+ " " + getBoardCardsForUserColour(i) + "    ");
@@ -169,12 +158,12 @@ public class Board{
 	
 	
 	
-	public String boardReaderCpu (){     // tam fonksiyonlu değil
+	public String boardReaderCpu (){     // With that I am able to read the deck and calculate the in game scores FOR CPU 
 	
-		boardCardsForCPU[0] = BoardInstance.Deck[indexCounterDeck];
+		        
 		
 		scoreCpu = 0;
-		boardCardsForCPU[0] = BoardInstance.Deck[indexCounterDeck];
+		
 		System.out.print("          " );
 		for(int i = 0 ; i < cpuHasThatMuchCardOnBoard ; i ++){ 
 		
@@ -217,12 +206,6 @@ public class Board{
 	public String getBoardCardsCpuUserSigns(int a ) {
 		return boardCardsForCPU[a].getSigns();
 	}
-	
-	
-
-	
-	
-	
 	
 	
 	public int method(){

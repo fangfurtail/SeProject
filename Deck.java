@@ -264,9 +264,9 @@ public void printTopUpCards() {
     }
 } 
 public void printUserDeckMain() {
-        System.out.println("              Your Deck");
+        System.out.println("             Your Deck");
         for (Card card : UserDeckMain) {
-            System.out.print("    " +card.wholeCardToString());
+            System.out.print("" +card.wholeCardToString());
         }
 		System.out.println();
     }
