@@ -9,7 +9,7 @@ public class Main{
         // Print UserDeckNotMain
         main.BoardInstance.giveCard(); //  gives card  and sets firt and last 5 value to null in main deck
 		
-		main.BoardInstance.printDeck();	
+		//main.BoardInstance.printDeck();	
         //main.BoardInstance.printUserDeckNotMain();
 		//main.BoardInstance.printCpuDeckNotMain();
 		//deckInstance.printTopUpCards();
@@ -22,6 +22,7 @@ public class Main{
 		System.out.println(main.board());
 		System.out.println(main.game());
 		
+		//System.out.println(main.game());
 		//System.out.println(main.game());
 		//main.BoardInstance.printDeck();
 		//System.out.println(main.boardReaderUser());

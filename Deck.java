@@ -45,6 +45,10 @@ public class Deck {
 		
 	}
 	
+	public void newGame(){
+		shuffle();
+		giveCard();
+	}
 	
 	public void shuffle(){ 
 			for( int i = 0 ; i < 40 ; i++){				// looping through all cards in the deck.
