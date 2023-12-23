@@ -29,9 +29,4 @@ public class Card {
             return Integer.parseInt(Number);
         } 
     
-	public static void main(String[] args){
-		
-		Card CardInstance = new Card("Red" , "10","+");
-		
-		}
 }
