@@ -13,8 +13,8 @@ public class Board{
 		int cpuHasThatMuchCardOnBoard = 1;
 		int scoreCpu = 0;
 		int scoreUser=0;
-		int scoreUserToCompare = 0 ;
-		int scoreCpuToCompare = 0 ;
+	public	int scoreUserToCompare = 0 ;
+	public int scoreCpuToCompare = 0 ;
 		
 		
 		
@@ -36,28 +36,36 @@ public class Board{
 	
 	public String game(){
 		boolean keyToUser = true;
+		boolean mainKeyToUser = true;   //   case 2 olursa User play loopuna girmeyecek .
+		
 		boolean keyToCpu =  true;
+		boolean keyToCpuMain =  true;
 		int answer;
 		int kaan = 0 ;
+		boolean annen = true;
+		
 	
 	
 	
-		while (kaan < 5 ){
+		while ((keyToCpuMain||mainKeyToUser || kaan <6)&&annen){
 			kaan++;
-			
-			
+			if(kaan>9){
+				keyToCpuMain = false;
+				mainKeyToUser = false;
+			}
 			System.out.println("\n\n\n\n\n\n\n\n");
 			BoardInstance.printCpuDeckMain();
-			System.out.println(scoreUser + " bbb");
-			System.out.println(gokbarkane + "  aaaa ");
+			//System.out.println(scoreUser + " bbb");
+			//System.out.println(scoreUserToCompare + "  aaaa ");
 			boardReaderCpu ();
 			boardReaderUser();
-			System.out.println(scoreUser + "  bbb  cıkıs  ");
-			System.out.println(gokbarkane + "  aaaa  cıkıs  ");
+			//System.out.println(scoreUser + "  bbb  cıkıs  ");
+			//System.out.println(scoreUserToCompare + "  aaaa  cıkıs  ");
 			BoardInstance.printUserDeckMain();
 			
 			
-			while (keyToUser){
+			while (keyToUser && mainKeyToUser){
+				System.out.println("69");
 				keyToCpu =  true;
 				System.out.println("Your Choice --->  1) DRAW A CARD   2)MY CARD  3)STAND  4)SKIP ");
 				answer = sc.nextInt();
@@ -77,6 +85,10 @@ public class Board{
 							boardCardsForUser[indexBoardUser++] = BoardInstance.UserDeckMain[answer2 - 1];
 							userHasThatMuchCardOnBoard = userHasThatMuchCardOnBoard + 1 ;
 							keyToUser= false;
+							mainKeyToUser = false;
+							keyToCpu= true;
+							
+							
 							
 					
 						}else {
@@ -86,55 +98,72 @@ public class Board{
 					
 						break;
 					case 3:
-						for( int a = 0 ; a < 4 ; a++){
-							if(getDeckCardsForCpuNumber(a)+ scoreCpu >17){
-							boardCardsForCPU[indexBoardCpu++]=BoardInstance.CpuDeckMain[a];
-							cpuHasThatMuchCardOnBoard++;
-							keyToUser= false;																		// there is no indexCounterDeck because cpu is taking the card from its deck
-							}else{
-								boardCardsForCPU[indexBoardCpu++] = BoardInstance.Deck[indexCounterDeck];
-								cpuHasThatMuchCardOnBoard = cpuHasThatMuchCardOnBoard+1;
-								indexCounterDeck++;
-								keyToUser= false;
-								keyToCpu = false;
-								
-								break;
-							}
-						}
+					if(!keyToCpuMain){
+						annen = false;
+					}
+					keyToUser =false;
+					keyToCpu= true;
 						break;
+						
+						
 					case 4:
-						// Skip
+						keyToUser =false;
 						break;
 					default:
 					 
 						System.out.println("Invalid choice");
 						break;
 				}
-				
+			keyToCpu=true;
 			}
 			
 			
 			
-				
-					if (scoreCpu < 14){          // that is cpu drawing a card 
-						boardCardsForCPU[indexBoardCpu++] = BoardInstance.Deck[indexCounterDeck];
-						cpuHasThatMuchCardOnBoard = cpuHasThatMuchCardOnBoard+1;
-						indexCounterDeck ++;
-						keyToUser = true ;
-						
+			int tracker = 0 ;
+				while( keyToCpu ){
+						tracker++;
+					if(tracker > 15){
+						break;
 					}
-				
+					//System.out.println("31");
+						if (keyToCpuMain){
+						for( int a = 0 ; a < 4 ; a++){
+										if(getDeckCardsForCpuNumber(a)+ scoreCpuToCompare >= 17 && getDeckCardsForCpuNumber(a)+ scoreCpuToCompare <20){
+										boardCardsForCPU[indexBoardCpu++]=BoardInstance.CpuDeckMain[a];
+										cpuHasThatMuchCardOnBoard++;
+										keyToUser= true;	
+										keyToCpu = false;	
+										keyToCpuMain =  false;
+										break;
+															// there is no indexCounterDeck because cpu is taking the card from its deck
+										}
+						}
+						}
+							if (keyToCpuMain && scoreCpuToCompare < 14 ){
+							boardCardsForCPU[indexBoardCpu++] = BoardInstance.Deck[indexCounterDeck];
+											cpuHasThatMuchCardOnBoard = cpuHasThatMuchCardOnBoard+1;
+											indexCounterDeck++;
+											keyToUser = true ;
+											break;
+											
+											
+							}
+							
+						keyToUser=true;
+						}
+					
+						
+			
+			
+		
+		
 		}
-	
 		
 		
-		return  "" ;
-		
-		
-				
-		
-		
-		}
+		System.out.println( scoreCpuToCompare+ " cpu  ---------- " + scoreUserToCompare + " user " );
+		return "31";	
+	}
+
 	
 	
 	
@@ -228,7 +257,7 @@ public class Board{
 	}
 	
 	public int getDeckCardsForCpuNumber(int a ) {                           // For reading Cpu 
-		if( BoardInstance.CpuDeckMain[a].getNumberAsInt() < 0){
+		if( BoardInstance.CpuDeckMain[a].getSigns().equals("-")){
 			return  -1 * BoardInstance.CpuDeckMain[a].getNumberAsInt();
 		}else {
 			return BoardInstance.CpuDeckMain[a].getNumberAsInt();
