@@ -28,5 +28,5 @@ public class Card {
 	public int getNumberAsInt() {
             return Integer.parseInt(Number);
         } 
-    
+     
 }
