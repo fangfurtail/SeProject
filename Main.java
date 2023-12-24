@@ -40,9 +40,6 @@ public class Main{
 							System.out.println(main.game());
 						
 			
-				
-	
-		
 		
 	}
 }

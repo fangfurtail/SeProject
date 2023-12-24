@@ -6,18 +6,18 @@ public class Board{
 	public Card[] boardCardsForCPU = new Card[10];  //  I ll keep it with 10;
 	// I dont need to try to hide them , it s cpu's deck 
 	public Deck BoardInstance = new Deck();
-		int indexCounterDeck=5;
-		int indexBoardUser= 1 ;
-		int indexBoardCpu=1;
-		int userHasThatMuchCardOnBoard=1;
-		int cpuHasThatMuchCardOnBoard = 1;
-		int scoreCpu = 0;
-		int scoreUser=0;
-	private int userWin=0;
-	private int cpuWin=0;
+	int indexCounterDeck=5;
+	int indexBoardUser= 1 ;
+	int indexBoardCpu=1;
+	int userHasThatMuchCardOnBoard=1;
+	int cpuHasThatMuchCardOnBoard = 1;
+	int scoreCpu = 0;
+	int scoreUser=0;
+	public int userWin=0;
+	public int cpuWin=0;
 	public	int scoreUserToCompare = 0 ;
 	public int scoreCpuToCompare = 0 ;
-		
+	public boolean goOn= true;
 		
 		
 		
@@ -37,7 +37,7 @@ public class Board{
 	
 	
 	public String game(){
-		System.out.println(board());
+		
 		boolean keyToUser = true;
 		boolean mainKeyToUser = true;   //   case 2 olursa User play loopuna girmeyecek .
 		
@@ -49,19 +49,12 @@ public class Board{
 		boolean enough= true;
 		
 	
-		while ( cpuWin <= 3 || userWin <= 3){
-			if (cpuWin == 3){
-				System.out.println("Cpu won");
-				break;
-			}else if (userWin == 3){
-				System.out.println("User won");
-				break;
-			}
+		
 		
 	
 		while ((keyToCpuMain||mainKeyToUser || kaan <6)&&keyKey){
 			
-			
+			// stand kapatma
 			
 			
 			
@@ -72,28 +65,26 @@ public class Board{
 				keyToCpuMain = false;
 				mainKeyToUser = false;
 			}
-			System.out.println("\n\n\n\n\n\n\n\n " + scoreUserToCompare+  "  sex  ");
+			System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n ");
 			BoardInstance.printCpuDeckMain();
 			
 			boardReaderCpu ();
 			boardReaderUser();
-		
-			
-			
-			System.out.println("\n\n\n\n\n\n\n\n " + scoreUserToCompare+  "  sex  ");
 			BoardInstance.printUserDeckMain();
 			
-			if(scoreUserToCompare>26){
+			
+			
+			if(scoreCpuToCompare>26){
 				break;
 			}
 			else{
 		boolean control=true;
-			for( int s = 0 ; s < 4 ; s++){
-				if(BoardInstance.UserDeckMain[s].getSigns().equals("-")&&(scoreUserToCompare-BoardInstance.UserDeckMain[s].getNumberAsInt()<=20)){
+			for( int p = 0 ; p < 4 ; p++){
+				if(BoardInstance.CpuDeckMain[p].getSigns().equals("-")&&(scoreCpuToCompare-BoardInstance.CpuDeckMain[p].getNumberAsInt()<=20)){
 					control = false;
 				}
 			}
-			if( control &&  scoreUserToCompare >20){
+			if( control &&  scoreCpuToCompare >20){
 					
 					break;
 					
@@ -102,10 +93,32 @@ public class Board{
 			
 			
 			
-			while (keyToUser && mainKeyToUser){
+			
+			
+			
+			if(scoreUserToCompare>26){
+				break;
+			}
+			else{
+		boolean control2=true;
+			for( int s = 0 ; s < 4 ; s++){
+				if(BoardInstance.UserDeckMain[s].getSigns().equals("-")&&(scoreUserToCompare-BoardInstance.UserDeckMain[s].getNumberAsInt()<=20)){
+					control2 = false;
+				}
+			}
+			if( control2 &&  scoreUserToCompare >20){
+					
+					break;
+					
+				}	
+			}
+			
+			
+			
+			while (keyToUser && mainKeyToUser&&goOn){
 				System.out.println("69");
 				keyToCpu =  true;
-				System.out.println("Your Choice --->  1) DRAW A CARD   2)MY CARD  3)STAND  4)SKIP ");
+				System.out.println("Your Choice --->  1) DRAW A CARD   2)MY CARD  3)STAND ");
 				answer = sc.nextInt();
 				switch (answer) {
 					case 1:
@@ -117,7 +130,7 @@ public class Board{
 						
 						break;
 					case 2:
-						System.out.println("WHICH CARD : 1 , 2 , 3 , 4");
+						System.out.println("WHICH CARD : 1 , 2 , 3 , 4 ");
 						int answer2 = sc.nextInt();
 						if (answer2 >= 1 && answer2 <= 4) {
 							boardCardsForUser[indexBoardUser++] = BoardInstance.UserDeckMain[answer2 - 1];
@@ -136,16 +149,65 @@ public class Board{
 					
 						break;
 					case 3:
+					goOn=false;
+					int tracker = 0 ;
+				while( keyToCpu ){
+						tracker++;
+					if(tracker > 3){
+						break;
+					}
+					
+						if (keyToCpuMain){
+							if(scoreCpuToCompare < 17){
+						for( int a = 0 ; a < 4 ; a++){
+							if(BoardInstance.CpuDeckMain[a].getSigns().equals("flip") || BoardInstance.CpuDeckMain[a].getSigns().equals("double")){
+								System.out.println(" buraya girmedi");
+								continue;
+							}
+										if(getDeckCardsForCpuNumber(a)+ scoreCpuToCompare >= 17 && getDeckCardsForCpuNumber(a)+ scoreCpuToCompare <=20){
+										boardCardsForCPU[indexBoardCpu++]=BoardInstance.CpuDeckMain[a];
+										cpuHasThatMuchCardOnBoard++;
+										System.out.println("case yeri    kendi kartı ");
+										keyToUser= true;	
+										keyToCpu = false;	
+										keyToCpuMain =  false;
+										game();
+										break;
+															// there is no indexCounterDeck because cpu is taking the card from its deck
+										}
+						}
+						}
+						}
+							if (keyToCpuMain && scoreCpuToCompare < 14  && scoreCpuToCompare <20){
+								System.out.println("case yeri");
+							boardCardsForCPU[indexBoardCpu++] = BoardInstance.Deck[indexCounterDeck];
+											cpuHasThatMuchCardOnBoard = cpuHasThatMuchCardOnBoard+1;
+											indexCounterDeck++;
+											keyToUser = true ;
+										
+											break;
+											
+											
+							}
+							
+						keyToUser=true;
+						}
+					
+					
 					if(!keyToCpuMain){
 						keyKey = false;
 					}
 					keyToUser =false;
 					keyToCpu= true;
+					
+			
+						
 						break;
 						
 						
 					case 4:
-						keyToUser =false;
+					System.out.println("Invalid choice");
+						
 						break;
 					default:
 					 
@@ -160,13 +222,23 @@ public class Board{
 			int tracker = 0 ;
 				while( keyToCpu ){
 						tracker++;
+						//System.out.println("aşağo ana while user ");
 					if(tracker > 15){
+						keyToUser = true;						
+	
 						break;
+						
 					}
 					//System.out.println("31");
 						if (keyToCpuMain){
 						for( int a = 0 ; a < 4 ; a++){
-										if(getDeckCardsForCpuNumber(a)+ scoreCpuToCompare >= 17 && getDeckCardsForCpuNumber(a)+ scoreCpuToCompare <20){
+							if(BoardInstance.CpuDeckMain[a].getSigns().equals("flip") || BoardInstance.CpuDeckMain[a].getSigns().equals("double")){
+								continue;
+								
+								
+		
+							}	
+										if(getDeckCardsForCpuNumber(a)+ scoreCpuToCompare >= 17 && getDeckCardsForCpuNumber(a)+ scoreCpuToCompare <=20){
 										boardCardsForCPU[indexBoardCpu++]=BoardInstance.CpuDeckMain[a];
 										cpuHasThatMuchCardOnBoard++;
 										keyToUser= true;	
@@ -203,47 +275,33 @@ public class Board{
 			if(scoreCpuToCompare > scoreUserToCompare){
 				cpuWin++;
 				System.out.println("Cpu just earned a point");
-				break;
+				
 				
 				
 			}else if (scoreCpuToCompare < scoreUserToCompare){
 				userWin++;
 				System.out.println("User just earned a point");
-				break;
+				
+				
 			}
 		}else if(scoreUserToCompare > 20 ){
 			cpuWin++;
 			System.out.println("Cpu just earned a point");
+			
 		}
 		
 		
-			
-	}
-		return "31";
+	
+		return "";
+		
 	}
 	
 	
 	
 	public String boardReaderUser (){
-		
 	
-		
-	/*for(int i = 0 ; i<2 ; i++){              // I AM DEFINING THE FIRST BEGINNING BOARD           						
-			boardCardsForUser[i] = BoardInstance.Deck[indexCounterDeck];
-			indexCounterDeck ++;
-			indexBoardUser++;
-			boardCardsForCPU[i] = BoardInstance.Deck[indexCounterDeck];
-			//indexCounterDeck++;
-			indexBoardCpu++;
-		}	
-		*/
-		
-		
 	 int scoreUser = 0 ;
 	 	
-
-
-		//  kart ttıkca artacak
 		System.out.print("          " );
 		
 		for(int i = 0 ; i < userHasThatMuchCardOnBoard ; i ++){ 
@@ -265,6 +323,11 @@ public class Board{
 		System.out.println( "                User's Current Score  is " + scoreUser +   "   "  );
 		return " " ;
 	}
+	
+	
+	
+	
+	
 	
 	
 	
@@ -295,6 +358,11 @@ public class Board{
 		System.out.println( "               Computers Current Score  is " + scoreCpu);
 		return " " ;
 		}		
+	
+	
+	
+	
+	
 	
 	
 	public int getBoardCardsForUserNumber(int a){

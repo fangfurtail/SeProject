@@ -34,7 +34,11 @@ public class Deck {
 		UserDeckNotMain = new Card[10];
 		CpuDeckMain = new Card[4];
 		CpuDeckNotMain = new Card[10];
-		for(int t = 0 ; t < Colour.length; t++){
+		
+		
+		
+		
+		for(int t = 0 ; t < Colour.length; t++){               // CREATING A DECK    
 			for (int n = 0 ; n < Number.length ; n++){
 				Deck[deckCreaterIndex]=new Card(Colour[t] , Number [n], "+");  // all signs must be positive in the main deck.
 				deckCreaterIndex++;
@@ -45,12 +49,11 @@ public class Deck {
 		
 	}
 	
-	public void newGame(){
-		shuffle();
-		giveCard();
-	}
 	
-	public void shuffle(){ 
+	
+	
+	
+	public void shuffle(){                                                     
 			for( int i = 0 ; i < 40 ; i++){				// looping through all cards in the deck.
 				int randIndex = rd.nextInt(40);			// generating a random number to replace 
 				temporaryCard = Deck[randIndex];		// generated temp card to swap values
@@ -59,12 +62,12 @@ public class Deck {
 			}
 	}
 	
-	public void giveCard ( ){                          // giving first 5 bottom cards to user , then 3 cards , then last 2 tricky cards 
-		for ( int i = 0 ; i < 5; i++){                 // 	I M not deleting those cards from  main deck !!!!! be careful
+	public void giveCard ( ){                          // giving first 5 bottom cards to user , then 3 cards , then last 2 tricky cards   
+		for ( int i = 0 ; i < 5; i++){                 // 	FİRST 5 CARDS 
 			UserDeckNotMain[i] = Deck[39-i];
 			Deck[39-i] = new Card (null,null,null);		     	// bu calısmıyor  , artık calısıyo
 		}
-		for (int t = 0 ; t<5 ;t++){
+		for (int t = 0 ; t<5 ;t++){					 // FOR CPU 
 			CpuDeckNotMain[t] = Deck[t];
 			Deck[t] = new Card (null,null,null);
 		}
@@ -73,7 +76,6 @@ public class Deck {
 			for (int n = 0 ; n < 6 ; n++){
 				TopUpCards[deckCreaterIndex2]=new Card(Colour[t] , Number [n], "+");  // positive 1 to 6 numbers with colours 
 				deckCreaterIndex2++;
-		
 			}
 		}
 		for(int t = 0 ; t < Colour.length; t++){
@@ -82,13 +84,10 @@ public class Deck {
 				deckCreaterIndex3++;
 			}
 		}
-		
-		
 		int randomValueforPicking; 		// we need to select 3 random cards for eachside
 		int randomValueforPicking2;
 		int randomValueforPicking3;
 		int randomValueforPick;
-		
 		for( int i = 0 ; i < 3 ; i++){			// and I ADDED THEM to each players deck 
 			
 			randomValueforPicking = rd.nextInt(TopUpCards.length);
@@ -96,7 +95,6 @@ public class Deck {
 			CpuDeckNotMain[5+i] = TopUpCards[randomValueforPicking];
 			UserDeckNotMain[5+i]= TopUpCards[randomValueforPicking2];
 		}
-		
 		for ( int i = 0 ; i < 2 ; i++){		// I LL SELECT THE LAST 2 TRICKY CARDS
 			randomValueforPicking= rd.nextInt(10)+1;		// this takes values 1 to 10 both inclusive
 			randomValueforPicking2 = rd.nextInt(10)+1;
@@ -111,7 +109,6 @@ public class Deck {
 				}else{          
 					 CpuDeckNotMain[8 + i] = new Card("", "", "double");
 				}
-				
 			}
 			if ( randomValueforPicking2 > 2 ) {      			// this is %80 
 				UserDeckNotMain[8+i] = TopUpCards[randomValueforPicking3];
@@ -155,9 +152,6 @@ public class Deck {
 	
 	//// my GET FUNCTIONS to get values from cards
 	
-	//public Card[] getCpuDeckMain(){
-		//return CpuDeckMain;
-	
 	
 								 
 	public int getUserDeckMainNumber(int a){
@@ -169,7 +163,6 @@ public class Deck {
 	public String getUserDeckMainSigns(int a ) {
 		return UserDeckMain[a].getSigns();
 	}
-	
 	public int getCpuDeckMainNumber(int a){
 		return CpuDeckMain[a].getNumberAsInt();
 	}
@@ -179,9 +172,6 @@ public class Deck {
 	public String getCpuDeckMainSigns(int a ) {
 		return CpuDeckMain[a].getSigns();
 	}
-	
-	
-	
 	public Card[] getCpuDeckMain(){
 		return CpuDeckMain;
 	}
@@ -191,9 +181,6 @@ public class Deck {
 	public Card[] getDeck(){
 		return Deck;
 	}
-		
-	
-	
     public void printDeck() {
     System.out.println("Deck contents:");
     for (Card card : Deck) {
