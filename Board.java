@@ -13,6 +13,8 @@ public class Board{
 		int cpuHasThatMuchCardOnBoard = 1;
 		int scoreCpu = 0;
 		int scoreUser=0;
+	private int userWin=0;
+	private int cpuWin=0;
 	public	int scoreUserToCompare = 0 ;
 	public int scoreCpuToCompare = 0 ;
 		
@@ -35,6 +37,7 @@ public class Board{
 	
 	
 	public String game(){
+		System.out.println(board());
 		boolean keyToUser = true;
 		boolean mainKeyToUser = true;   //   case 2 olursa User play loopuna girmeyecek .
 		
@@ -42,26 +45,61 @@ public class Board{
 		boolean keyToCpuMain =  true;
 		int answer;
 		int kaan = 0 ;
-		boolean annen = true;
+		boolean keyKey = true;
+		boolean enough= true;
 		
 	
+		while ( cpuWin <= 3 || userWin <= 3){
+			if (cpuWin == 3){
+				System.out.println("Cpu won");
+				break;
+			}else if (userWin == 3){
+				System.out.println("User won");
+				break;
+			}
+		
 	
-	
-		while ((keyToCpuMain||mainKeyToUser || kaan <6)&&annen){
+		while ((keyToCpuMain||mainKeyToUser || kaan <6)&&keyKey){
+			
+			
+			
+			
+			
+			
+			
 			kaan++;
 			if(kaan>9){
 				keyToCpuMain = false;
 				mainKeyToUser = false;
 			}
-			System.out.println("\n\n\n\n\n\n\n\n");
+			System.out.println("\n\n\n\n\n\n\n\n " + scoreUserToCompare+  "  sex  ");
 			BoardInstance.printCpuDeckMain();
-			//System.out.println(scoreUser + " bbb");
-			//System.out.println(scoreUserToCompare + "  aaaa ");
+			
 			boardReaderCpu ();
 			boardReaderUser();
-			//System.out.println(scoreUser + "  bbb  cıkıs  ");
-			//System.out.println(scoreUserToCompare + "  aaaa  cıkıs  ");
+		
+			
+			
+			System.out.println("\n\n\n\n\n\n\n\n " + scoreUserToCompare+  "  sex  ");
 			BoardInstance.printUserDeckMain();
+			
+			if(scoreUserToCompare>26){
+				break;
+			}
+			else{
+		boolean control=true;
+			for( int s = 0 ; s < 4 ; s++){
+				if(BoardInstance.UserDeckMain[s].getSigns().equals("-")&&(scoreUserToCompare-BoardInstance.UserDeckMain[s].getNumberAsInt()<=20)){
+					control = false;
+				}
+			}
+			if( control &&  scoreUserToCompare >20){
+					
+					break;
+					
+				}	
+			}
+			
 			
 			
 			while (keyToUser && mainKeyToUser){
@@ -99,7 +137,7 @@ public class Board{
 						break;
 					case 3:
 					if(!keyToCpuMain){
-						annen = false;
+						keyKey = false;
 					}
 					keyToUser =false;
 					keyToCpu= true;
@@ -161,10 +199,28 @@ public class Board{
 		
 		
 		System.out.println( scoreCpuToCompare+ " cpu  ---------- " + scoreUserToCompare + " user " );
-		return "31";	
+		if(scoreCpuToCompare <= 20 && scoreUserToCompare<=20){
+			if(scoreCpuToCompare > scoreUserToCompare){
+				cpuWin++;
+				System.out.println("Cpu just earned a point");
+				break;
+				
+				
+			}else if (scoreCpuToCompare < scoreUserToCompare){
+				userWin++;
+				System.out.println("User just earned a point");
+				break;
+			}
+		}else if(scoreUserToCompare > 20 ){
+			cpuWin++;
+			System.out.println("Cpu just earned a point");
+		}
+		
+		
+			
 	}
-
-	
+		return "31";
+	}
 	
 	
 	
